@@ -56,6 +56,29 @@ matrix[0] accesses the first row, which is itself a vector<int>.
 .size() on that first row returns the number of elements in that row, which is the number of
 */
 
+/* Bonus solution approach:
+You can absolutely think of this approach as a simple finite state machine (FSM).
+Here's why:
+A finite state machine consists of:
+    -A set of states,
+    -A current state,
+Transitions between states based on certain conditions or rules.
+In this code:
+States: Each value of the direction variable (0 to 3) represents a state:
+
+    -0: move left → right
+    -1: move top → bottom
+    -2: move right → left
+    -3: move bottom → top
+
+Transitions: Each transition happens deterministically:
+After direction 0 → transition to 1,
+1 → 2,
+2 → 3,
+3 → 0 (loops back).
+This forms a cyclical FSM with 4 states and a single rule: move to the next direction in the spiral after each iteration.
+*/
+
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -65,6 +88,20 @@ class Solution {
         vector<int> spiralOrder(vector<vector<int>>& matrix){
             int m = matrix.size(); // number of rows
             int n = matrix[0].size(); //Numbers of columns
+            /*
+            top: the first row to consider
+            bottom: the last row to consider
+            left: the first column to consider
+            right: the last column to consider
+            */
+
+           /*
+           direction controls which side we're currently traversing:
+           0: left → right
+           1: top → bottom
+           2: right → left
+           3: bottom → top
+           */
             int top = 0, bottom = m - 1, left = 0, right = n - 1, direction = 0;
             vector<int> output;
             while(top <= bottom && left <= right){
@@ -73,6 +110,7 @@ class Solution {
                     for(int j = left; j <= right; j++){
                         output.push_back(matrix[top][j]);
                     }
+                    //After traversal, move the top boundary down (top++) and change direction.
                     top++;
                     direction =1; 
                 }
@@ -81,6 +119,7 @@ class Solution {
                     for(int i = top; i <= bottom; i++){
                         output.push_back(matrix[i][right]);
                     }
+                    //After traversal, move the right boundary left (right--) and change direction.
                     right--;
                     direction = 2;
                 }
@@ -89,6 +128,7 @@ class Solution {
                     for(int j = right; j >= left; j--){
                         output.push_back(matrix[bottom][j]);
                     }
+                    //After traversal, move the bottom boundary up (bottom--) and change direction.
                     bottom--;
                     direction = 3;
                 }
@@ -98,6 +138,7 @@ class Solution {
                         output.push_back(matrix[i][left]);
                     }
                     left++;
+                    //After traversal, move the left boundary right (left++) and reset direction to 0 (start over).
                     direction = 0;
                 }
             }
