@@ -9,7 +9,7 @@ Subarray means a contiguous part of an array
 */
 
 /*
-Solution: 
+Solution approach: 
 - Create two variables, one to store the current sum, and the other one to store the maximum sum so far.  
 So the idea is to point the current sum to the first element, and update the max sum so far variable with it, next, sum the current sum number with the next one in the array. Check if the max sum so far is greater than the current sum, if not, update it with the current sum. Continue iterating within the array, and sum with the next element, update the max sum so far, and so on. 
 If the max sum so far becomes negative, start with the next positive number in the array and update the max sum so far with it. For instance, if the max sum so far is -2, then move to the next positive in the array which is 1 in the position [1].
