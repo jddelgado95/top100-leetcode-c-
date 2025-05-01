@@ -110,7 +110,7 @@ int main() {
 
     Solution sol;
     sol.SetZeroes(matrix);
-
+//It prints a 2D matrix (output) in a formatted table-like layout. The outer loop goes over each row. The inner loop prints each value in that row. After each row, it prints a newline ("\n"), so it appears like a grid.
     cout << "Resulting matrix:\n";
     for (const auto& row : matrix) {
         for (int val : row) {
