@@ -103,6 +103,16 @@ public:
         }
         return nullptr;
     }
+
+    void printList(ListNode* head) {
+    ListNode* current = head;
+    while (current != nullptr) {
+        cout << current->val << " ";
+        current = current->next;
+    }
+    cout << endl;
+}
+
 private:
     // Helper function to find the length of the list
     int findLength(ListNode *head) {
