@@ -61,7 +61,7 @@ public:
         while(start <= end){
             int mid = (start + end) / 2;
             //Call countHours() to check how many hours Koko would need to finish eating at speed mid
-            if(countHours(piles, mid) > h) {
+            if(countHours(piles, mid) > (long) h) {
                 //If it takes more hours than allowed (> h), it means speed is too slow, so search on the right
                 start = mid + 1;
             } else {
@@ -74,9 +74,9 @@ public:
     }
 
     //This function calculates the total number of hours Koko needs to eat all bananas at the given speed.
-    int countHours(vector<int>& piles, int speed){
+    long countHours(vector<int>& piles, int speed){
         //Start with 0 total hours
-        int number_hours = 0;
+        long number_hours = 0;
         for(int i = 0; i < piles.size(); i++){
             //For each pile, calculate the number of hours it takes to eat it using ceiling division
             number_hours += findCeil(piles[i], speed);
@@ -84,7 +84,7 @@ public:
         return number_hours;
     }
     //Custom function to perform ceiling division without using floating point math.
-    int findCeil(int a, int b){
+    long findCeil(int a, int b){
         //If a is perfectly divisible by b, just return the result
         if(a % b == 0){
             return a / b;
