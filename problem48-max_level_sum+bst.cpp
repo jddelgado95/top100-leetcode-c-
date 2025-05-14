@@ -20,7 +20,9 @@ Output: 2
 
 /* Solution approach: 
 Use Level order traversal. Use a map that contains the sum for each level. 
-
+The idea is to create a pair <level, sum>, and store it in a map. 
+Iterate through all nodes  while storing the levels and update the current sum plus the current node that we are visiting. 
+Then, after traverse all the list, check for each level and its sum. And return the max among them. 
 It can be optimize to use hash table.
 */
 
