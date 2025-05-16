@@ -56,7 +56,7 @@ public:
                 if(nums[i] <= mid){
                     count++;
                 }
-                if(count == mid) {
+                if(count <= mid) {
                     start = mid + 1;
                 } else {
                     answer = mid;
